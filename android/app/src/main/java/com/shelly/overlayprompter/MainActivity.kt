@@ -86,8 +86,12 @@ class MainActivity : Activity() {
             startActivity(Intent(this, PermissionActivity::class.java)); return
         }
         val i = Intent(this, OverlayService::class.java).setAction(OverlayService.ACTION_SHOW)
-        startForegroundService(i)
-        moveTaskToBack(true)
+        try {
+            startForegroundService(i)
+            moveTaskToBack(true)
+        } catch (e: Exception) {
+            Toast.makeText(this, "לא ניתן להפעיל את הפרומפטר: ${e.message}", Toast.LENGTH_LONG).show()
+        }
     }
 
     private fun saveScript() {

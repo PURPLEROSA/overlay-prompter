@@ -81,7 +81,7 @@ class OverlayService : Service() {
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-        startFg()
+        try { startFg() } catch (e: Exception) { stopSelf(); return START_NOT_STICKY }
         if (!Settings.canDrawOverlays(this)) { stopSelf(); return START_NOT_STICKY }
         when (intent?.action) {
             ACTION_TOGGLE -> setPlaying(!playing)
