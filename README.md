@@ -1,5 +1,7 @@
 # Overlay Prompter · טלפרומפטר שכבה
 
+🌐 **Landing page:** https://purplerosa.github.io/overlay-prompter/ (source in `docs/`) · ⬇ [Download Android APK](https://github.com/PURPLEROSA/overlay-prompter/releases/latest/download/overlay-prompter.apk)
+
 ![screenshot](screens/overlay-over-background.png)
 
 ---
@@ -118,4 +120,4 @@ Sideload the debug APK → allow "Install unknown apps" for your file manager/br
 ### Screen recording / screenshots — honest note
 The overlay window sets `FLAG_SECURE`, which asks Android to exclude it from screenshots and screen recordings. Many devices honor this for overlay windows, but **behavior varies by manufacturer and Android version** (some show a black area, some ignore it). Either way, **a TikTok/Instagram camera recording never includes the overlay** — the camera only captures the lens, not the screen.
 
-Not on Play Store; debug-signed build. iOS is not possible (iOS does not allow drawing over other apps).
+Not on Play Store. Release APK (`dist/overlay-prompter.apk`) is signed with a release key kept outside the repo; Play Protect may warn on install (More details → Install anyway). iOS is not possible (iOS does not allow drawing over other apps).
