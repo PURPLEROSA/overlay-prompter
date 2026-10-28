@@ -1,58 +1,91 @@
 <!doctype html>
 <html lang="en" dir="ltr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Overlay Prompter — free floating teleprompter by Shelly Or Gisser</title>
-<meta name="description" content="A free transparent teleprompter that floats over any app — Zoom, Teams, TikTok, camera filters. Built by Shelly Or Gisser.">
+<title>Shelly Or Gisser · Overlay Prompter — free floating teleprompter</title>
+<meta name="description" content="Shelly Or Gisser — AI implementation, Technion lecturer, Google creative partner. Plus Overlay Prompter: a free teleprompter that floats over any app.">
 <style>
+@font-face{font-family:Anton;src:url(assets/Anton.ttf) format("truetype")}
 @font-face{font-family:Heebo;src:url(assets/Heebo.ttf) format("truetype");font-weight:100 900}
-:root{--p:#7c3aed;--p2:#a855f7;--d:#1e1033;--l:#f5f0ff}
-*{box-sizing:border-box}body{margin:0;font-family:Heebo,system-ui,sans-serif;color:var(--d);background:#fff;line-height:1.6}
-a{color:var(--p)}.w{max-width:1080px;margin:auto;padding:0 22px}
-header{background:radial-gradient(circle at 20% 0,#a855f7 0,#6d28d9 45%,#2e1065 100%);color:#fff;padding:28px 0 70px}
-nav{display:flex;justify-content:space-between;align-items:center;font-weight:700}nav a{color:#e9d5ff;text-decoration:none;margin-left:18px;font-weight:500}
-.hero{display:grid;grid-template-columns:1.1fr 1fr;gap:40px;align-items:center;margin-top:50px}
-h1{font-size:3.2rem;line-height:1.1;margin:0 0 10px;font-weight:900}.by{font-size:1.35rem;color:#e9d5ff;margin:0 0 18px}.by b{color:#fff}
-.tag{font-size:1.2rem;opacity:.95}.btn{display:inline-block;background:#fff;color:var(--p);padding:14px 26px;border-radius:999px;font-weight:800;text-decoration:none;margin:18px 10px 0 0;box-shadow:0 8px 24px #0004}
-.btn.o{background:transparent;color:#fff;border:2px solid #e9d5ff;box-shadow:none}
-.shot{border-radius:16px;box-shadow:0 20px 50px #0007;width:100%}
-section{padding:70px 0}section.alt{background:var(--l)}h2{font-size:2rem;margin:0 0 24px;font-weight:800}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px}
-.card{background:#fff;border:1px solid #e9d5ff;border-radius:14px;padding:20px}.card h3{margin:0 0 6px;color:var(--p)}
-ol li{margin-bottom:10px}code{background:#ede9fe;padding:2px 6px;border-radius:6px}
-.note{background:#fff7ed;border-left:4px solid #f59e0b;padding:12px 16px;border-radius:8px}
-.about{display:grid;grid-template-columns:1fr 2fr;gap:30px;align-items:start}.about .badge{background:linear-gradient(135deg,var(--p),var(--p2));color:#fff;border-radius:18px;padding:28px;font-size:1.6rem;font-weight:900}
-footer{background:var(--d);color:#c4b5fd;padding:30px 0;text-align:center}footer a{color:#fff}
-@media(max-width:800px){.hero,.about{grid-template-columns:1fr}h1{font-size:2.3rem}nav a{display:none}}
+:root{--sky:#1e9bf0;--sky2:#7cc8ff;--pink:#ff2d8a;--cream:#fff8f0;--ink:#0d1b2a;--chrome:linear-gradient(135deg,#f4f6f8,#b9c2cc 40%,#ffffff 55%,#9aa5b1)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Heebo,system-ui,sans-serif;color:var(--ink);background:var(--cream);line-height:1.65}
+a{color:var(--pink)}img{display:block;max-width:100%}.w{max-width:1160px;margin:auto;padding:0 24px}
+.disp{font-family:Anton,Impact,sans-serif;text-transform:uppercase;letter-spacing:.01em;font-weight:400;line-height:.92}
+nav{position:absolute;top:0;left:0;right:0;z-index:5}nav .w{display:flex;justify-content:space-between;align-items:center;padding-top:22px}
+nav .logo{font-family:Anton;font-size:1.3rem;color:#fff;letter-spacing:.06em}nav a.l{color:#fff;text-decoration:none;margin-left:22px;font-weight:600;font-size:.95rem}
+.hero{background:linear-gradient(180deg,var(--sky) 0,var(--sky2) 100%);color:#fff;overflow:hidden;position:relative}
+.hero .w{display:grid;grid-template-columns:1.15fr .85fr;gap:30px;align-items:end;min-height:720px;padding-top:110px}
+.hero h1{font-size:clamp(4rem,10vw,9.5rem);margin:0;color:#fff;text-shadow:0 4px 0 rgba(13,27,42,.08)}
+.hero h1 span{color:var(--pink)}
+.roles{font-weight:700;font-size:1.1rem;letter-spacing:.04em;margin:22px 0 8px}.roles i{color:var(--pink);font-style:normal;padding:0 6px}
+.hero p.lead{font-size:1.15rem;max-width:560px;opacity:.95}
+.btn{display:inline-block;padding:14px 28px;border-radius:999px;font-weight:800;text-decoration:none;margin:20px 12px 0 0;transition:transform .15s}.btn:hover{transform:translateY(-2px)}
+.btn.p{background:var(--pink);color:#fff;box-shadow:0 10px 28px rgba(255,45,138,.35)}.btn.c{background:var(--chrome);color:var(--ink);border:1px solid #fff}
+.hero .txt{padding-bottom:90px}.portrait{border-radius:220px 220px 0 0;overflow:hidden;border:6px solid #fff;border-bottom:0;box-shadow:0 -10px 60px rgba(13,27,42,.2)}
+.portrait img{width:100%;height:600px;object-fit:cover;object-position:center top}
+.chrome-bar{height:10px;background:var(--chrome)}
+section{padding:96px 0}.eyebrow{font-weight:800;letter-spacing:.18em;font-size:.8rem;color:var(--pink);text-transform:uppercase}
+h2{font-size:clamp(2.6rem,6vw,4.6rem);margin:8px 0 28px}
+.about .w{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px}
+.about .big{font-size:1.55rem;font-weight:700;line-height:1.4;border-left:6px solid var(--pink);padding-left:20px}
+.facts{list-style:none;padding:0;margin:0}.facts li{padding:16px 0;border-bottom:1px solid #e9dccd;font-size:1.05rem}.facts b{color:var(--sky)}
+.product{background:#fff}.prod-hero{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.stack{position:relative;height:560px}.stack img{position:absolute;border-radius:22px;box-shadow:0 24px 60px rgba(13,27,42,.22);object-fit:cover}
+.stack .a{width:72%;height:440px;left:0;top:0}.stack .b{width:52%;height:330px;right:0;bottom:0;border:6px solid #fff}
+.feat{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:64px}
+.card{background:var(--cream);border-radius:18px;padding:24px;border-top:4px solid var(--sky)}.card:nth-child(even){border-top-color:var(--pink)}
+.card h3{font-family:Anton;text-transform:uppercase;font-weight:400;font-size:1.35rem;margin:0 0 6px;letter-spacing:.02em}
+.shot{max-width:760px;margin:64px auto 0;border-radius:18px;overflow:hidden;box-shadow:0 20px 50px rgba(13,27,42,.18)}.cap{text-align:center;font-size:.9rem;color:#5a6a7a;margin-top:10px}
+.install{background:var(--sky);color:#fff}.install a{color:#fff}.install .eyebrow{color:#fff;opacity:.85}
+.steps{counter-reset:s;list-style:none;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px}
+.steps li{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.35);border-radius:16px;padding:20px 20px 20px 64px;position:relative}
+.steps li:before{counter-increment:s;content:counter(s);position:absolute;left:18px;top:14px;font-family:Anton;font-size:2rem;color:var(--pink);text-shadow:0 0 1px #fff}
+.note{background:#fff;color:var(--ink);border-radius:14px;padding:16px 20px;margin-top:24px;border-left:6px solid var(--pink)}
+code{background:#eef6ff;padding:3px 8px;border-radius:6px;font-size:.92em}
+footer{background:var(--ink);color:#c9d6e3;padding:40px 0;text-align:center}footer a{color:#fff}footer .disp{font-size:2rem;color:#fff;margin-bottom:6px}
+@media(max-width:860px){nav a.l{display:none}.hero .w,.about .w,.prod-hero{grid-template-columns:1fr}.hero .w{min-height:0}.hero .txt{padding-bottom:10px}
+.portrait img{height:440px}.feat{grid-template-columns:1fr}.stack{height:420px}.stack .a{height:320px}.stack .b{height:240px}section{padding:64px 0}}
 </style></head><body>
-<header><div class="w"><nav><span>Overlay Prompter</span><span><a href="#features">Features</a><a href="#android">Android</a><a href="#desktop">Desktop</a><a href="#about">About Shelly</a></span></nav>
-<div class="hero"><div><h1>Overlay Prompter</h1><p class="by">built by <b>Shelly Or Gisser</b></p>
-<p class="tag">A free, transparent teleprompter that floats over any app — Zoom, Teams, TikTok, camera-filter apps — so you read your script while looking straight at the lens. Designed to stay hidden from screen share and recordings.</p>
-<a class="btn" href="https://github.com/PURPLEROSA/overlay-prompter/releases/latest/download/overlay-prompter.apk">⬇ Download for Android (APK)</a><a class="btn o" href="#desktop">Desktop version</a></div>
-<img class="shot" src="assets/screenshot.png" alt="Overlay Prompter floating over another app"></div></div></header>
-<section id="features"><div class="w"><h2>Features</h2><div class="grid">
-<div class="card"><h3>Floats over everything</h3>Always on top of Zoom, Teams, TikTok, Instagram, camera and filter apps.</div>
-<div class="card"><h3>Hidden from capture</h3>Uses OS content protection (FLAG_SECURE / setContentProtection) to stay out of screen shares and recordings on supported systems. Always test before going live.</div>
+<nav><div class="w"><span class="logo">SOG</span><span><a class="l" href="#about">About</a><a class="l" href="#prompter">Overlay Prompter</a><a class="l" href="#install">Install</a><a class="l" href="https://aigosai.com">aigosai.com</a></span></div></nav>
+<header class="hero"><div class="w"><div class="txt">
+<h1 class="disp">Shelly<br>Or <span>Gisser</span></h1>
+<div class="roles">AI Implementation<i>·</i>Technion Lecturer<i>·</i>Google Creative Partner<i>·</i>TV AI Commentator</div>
+<p class="lead">Making people understand AI products, get excited about them, and actually use them.</p>
+<a class="btn p" href="#prompter">Get Overlay Prompter — free</a><a class="btn c" href="https://aigosai.com">aigosai.com</a></div>
+<div class="portrait"><img src="assets/shelly.jpg" alt="Shelly Or Gisser in a flower field under a blue sky"></div></div></header>
+<div class="chrome-bar"></div>
+<section class="about" id="about"><div class="w"><div><div class="eyebrow">About</div><h2 class="disp">Meet Shelly</h2>
+<p class="big">Shelly Or Gisser implements AI systems in organizations around the world, guiding companies through AI implementation and adoption.</p></div>
+<ul class="facts">
+<li><b>Technion</b> — AI lecturer.</li>
+<li><b>Google</b> — creative partner: AI visuals and “Storytelling with Gemini” workshops for Google Israel and EMEA.</li>
+<li><b>Israeli TV</b> — weekly AI commentator (News 13 / Kan 11); previously hosted her own AI-news TV segment for two years.</li>
+<li><b>Workshops & lectures</b> — AI workshops and lectures for organizations.</li>
+<li><b>Gitam BBDO</b> — Head of AI.</li>
+<li><a href="https://aigosai.com">aigosai.com →</a></li></ul></div></section>
+<section class="product" id="prompter"><div class="w"><div class="prod-hero"><div>
+<div class="eyebrow">Free tool by Shelly</div><h2 class="disp">Overlay<br>Prompter</h2>
+<p style="font-size:1.15rem">A free, transparent teleprompter that floats over any app — Zoom, Teams, TikTok, camera-filter apps — so you read your script while looking straight at the lens. Designed to stay hidden from screen share and recordings on supported systems.</p>
+<a class="btn p" href="https://github.com/PURPLEROSA/overlay-prompter/releases/latest/download/overlay-prompter.apk">⬇ Download for Android (APK)</a><a class="btn c" href="#desktop">Desktop version</a></div>
+<div class="stack"><img class="a" src="assets/computer.jpg" alt="Retro computer among flowers with chrome swirls and disco balls"><img class="b" src="assets/chameleon.jpg" alt="Iridescent chameleon on a retro mouse"></div></div>
+<div class="feat">
+<div class="card"><h3>Floats over everything</h3>Stays on top of Zoom, Teams, TikTok, Instagram, camera and filter apps.</div>
+<div class="card"><h3>Hidden from capture</h3>Uses OS content protection (FLAG_SECURE / setContentProtection) to stay out of screen shares and recordings where supported. Always test before going live.</div>
 <div class="card"><h3>Smooth auto-scroll</h3>Play/pause, speed control, jump back/forward, highlighted reading line.</div>
 <div class="card"><h3>Your layout</h3>Drag, resize, font size, background opacity, mirror mode, click-through lock.</div>
 <div class="card"><h3>Hebrew & RTL ready</h3>Full right-to-left support with the Heebo font, plus English.</div>
-<div class="card"><h3>Free & private</h3>No account, no ads. Scripts stay on your device.</div></div></div></section>
-<section id="android" class="alt"><div class="w"><h2>Install on Android (8.0+)</h2><ol>
-<li>Tap <a href="https://github.com/PURPLEROSA/overlay-prompter/releases/latest/download/overlay-prompter.apk">Download APK</a> on your phone.</li>
-<li>Open the downloaded file. If asked, allow <b>Install unknown apps</b> for your browser or file manager.</li>
-<li>If Google Play Protect warns about an unknown app, tap <b>More details</b> → <b>Install anyway</b>. (The app isn't on the Play Store, so Play Protect doesn't recognize it.)</li>
+<div class="card"><h3>Free & private</h3>No account, no ads. Scripts stay on your device.</div></div>
+<div class="shot"><img src="assets/screenshot.png" alt="Overlay Prompter floating over another app"></div><p class="cap">The prompter floating over another app.</p></div></section>
+<section class="install" id="install"><div class="w"><div class="eyebrow">Android 8.0+</div><h2 class="disp">Install in a minute</h2>
+<ol class="steps">
+<li>Tap <a href="https://github.com/PURPLEROSA/overlay-prompter/releases/latest/download/overlay-prompter.apk"><b>Download APK</b></a> on your phone.</li>
+<li>Open the file. If asked, allow <b>Install unknown apps</b> for your browser or file manager.</li>
+<li>If Google Play Protect warns, tap <b>More details</b> → <b>Install anyway</b>. (It's not on the Play Store, so Play Protect doesn't recognize it.)</li>
 <li>Open <b>Overlay Prompter</b>, paste or share your script into it, and tap <b>Start</b>.</li>
 <li>On first run, tap <b>Open permission settings</b> and enable <b>Display over other apps</b>.</li>
-<li>Allow notifications (Android 13+) for pause/hide/stop controls.</li>
-<li>Open TikTok, Zoom or any app — the prompter stays on top.</li></ol>
-<p class="note">Screen-capture hiding depends on the device and Android version. A camera recording never includes the overlay — the camera only sees the lens, not the screen. iOS isn't supported (it doesn't allow drawing over other apps).</p></div></section>
-<section id="desktop"><div class="w"><h2>Desktop (Windows / macOS)</h2>
-<p>The desktop version is an Electron app with global hotkeys (Ctrl+Shift+Space play/pause, Ctrl+Shift+↑/↓ speed, Ctrl+Shift+L click-through, Ctrl+Shift+H hide). Installers aren't published yet — build from source:</p>
+<li>Allow notifications (Android 13+) for pause / hide / stop, then open any app — the prompter stays on top.</li></ol>
+<p class="note">Screen-capture hiding depends on device and Android version. A camera recording never includes the overlay — the camera only sees the lens, not the screen. iOS isn't supported (it doesn't allow drawing over other apps).</p></div></section>
+<section id="desktop"><div class="w"><div class="eyebrow">Windows / macOS</div><h2 class="disp">Desktop</h2>
+<p>An Electron app with global hotkeys: <code>Ctrl+Shift+Space</code> play/pause · <code>Ctrl+Shift+↑/↓</code> speed · <code>Ctrl+Shift+L</code> click-through · <code>Ctrl+Shift+H</code> hide. Installers aren't published yet — build from source:</p>
 <p><code>npm install</code> → <code>npm start</code> · installers: <code>npm run dist:win</code> / <code>npm run dist:mac</code></p>
-<p>Source & docs: <a href="https://github.com/PURPLEROSA/overlay-prompter">github.com/PURPLEROSA/overlay-prompter</a></p></div></section>
-<section id="about" class="alt"><div class="w about"><div class="badge">About<br>Shelly Or Gisser</div><div>
-<p><b>Shelly Or Gisser implements AI systems in organizations around the world</b>, guiding companies through AI implementation and adoption.</p>
-<p>She is an AI lecturer at the Technion and a creative partner of Google, creating AI visuals and leading “Storytelling with Gemini” workshops for Google Israel and EMEA.</p>
-<p>She is a weekly AI commentator on Israeli TV (News 13 / Kan 11) and previously hosted her own AI-news TV segment for two years. She also serves as Head of AI at Gitam BBDO, and runs AI workshops and lectures for organizations.</p>
-<p>Her focus: helping people understand AI products, get excited about them, and actually use them.</p>
-<a class="btn" style="background:var(--p);color:#fff" href="https://aigosai.com">aigosai.com →</a></div></div></section>
-<footer>Built by <a href="https://aigosai.com">Shelly Or Gisser</a> · Free & open source (MIT)</footer>
+<p>Source: <a href="https://github.com/PURPLEROSA/overlay-prompter">github.com/PURPLEROSA/overlay-prompter</a></p></div></section>
+<footer><div class="disp">Shelly Or Gisser</div>Built by Shelly Or Gisser · <a href="https://aigosai.com">aigosai.com</a> · Overlay Prompter is free & open source (MIT)</footer>
 </body></html>
