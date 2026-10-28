@@ -1,0 +1,23 @@
+@font-face { font-family: 'Heebo'; src: url('../../assets/fonts/Heebo.ttf'); font-weight: 100 900; }
+:root { --bg-opacity: .55; --font-size: 44px; --readline: 35%; }
+html, body { margin: 0; height: 100%; background: transparent; overflow: hidden; user-select: none; }
+#frame { position: absolute; inset: 0; border-radius: 14px; overflow: hidden;
+  background: rgba(0, 0, 0, var(--bg-opacity)); font-family: 'Heebo', 'Arial Hebrew', 'Segoe UI', sans-serif; }
+#dragbar { -webkit-app-region: drag; height: 22px; display: flex; align-items: center; justify-content: space-between;
+  padding: 0 10px; color: #fff8; font-size: 11px; background: rgba(255,255,255,.06); }
+body.clickthrough #dragbar { opacity: .25; }
+#viewport { position: absolute; top: 22px; left: 0; right: 0; bottom: 0; overflow: hidden;
+  /* fade text in/out at the edges so it reads like a real prompter */
+  -webkit-mask-image: linear-gradient(transparent 0, #000 18%, #000 82%, transparent 100%); }
+#text { position: absolute; left: 0; right: 0; padding: 0 28px; color: #fff; font-size: var(--font-size);
+  line-height: 1.4; font-weight: 500; white-space: pre-wrap; will-change: transform;
+  text-shadow: 0 2px 6px #000c; }
+body.rtl #text { direction: rtl; text-align: right; }
+body.ltr #text { direction: ltr; text-align: left; }
+body.mirror #viewport { transform: scaleX(-1); }
+#readline { position: absolute; left: 0; right: 0; top: var(--readline); height: calc(var(--font-size) * 1.4);
+  transform: translateY(-50%); background: rgba(255, 214, 0, .16); border-top: 2px solid #ffd60088;
+  border-bottom: 2px solid #ffd60088; pointer-events: none; z-index: 1; }
+body.no-highlight #readline { display: none; }
+#grip { position: absolute; bottom: 0; right: 0; width: 16px; height: 16px; cursor: nwse-resize;
+  background: linear-gradient(135deg, transparent 50%, #fff6 50%); }

@@ -1,0 +1,32 @@
+{
+  "name": "overlay-prompter",
+  "productName": "Overlay Prompter",
+  "version": "0.1.0",
+  "description": "Transparent always-on-top teleprompter overlay (Hebrew/RTL first) for Zoom, Teams, TikTok Live and any app.",
+  "main": "src/main.js",
+  "author": "Shelly Or Gisser",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron .",
+    "screenshot": "electron . --screenshot=screens/overlay-raw.png",
+    "dist": "electron-builder",
+    "dist:win": "electron-builder --win nsis",
+    "dist:mac": "electron-builder --mac dmg"
+  },
+  "devDependencies": {
+    "electron": "^33.2.0",
+    "electron-builder": "^25.1.8"
+  },
+  "build": {
+    "appId": "com.shellyorgisser.overlayprompter",
+    "productName": "Overlay Prompter",
+    "files": ["src/**/*", "assets/**/*", "package.json"],
+    "directories": { "output": "dist" },
+    "win": { "target": [{ "target": "nsis", "arch": ["x64"] }] },
+    "nsis": { "oneClick": false, "allowToChangeInstallationDirectory": true },
+    "mac": {
+      "target": [{ "target": "dmg", "arch": ["x64", "arm64"] }],
+      "category": "public.app-category.productivity"
+    }
+  }
+}

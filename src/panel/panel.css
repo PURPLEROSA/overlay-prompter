@@ -1,0 +1,18 @@
+@font-face { font-family: 'Heebo'; src: url('../../assets/fonts/Heebo.ttf'); font-weight: 100 900; }
+body { margin: 0; display: flex; height: 100vh; font-family: 'Heebo', 'Segoe UI', sans-serif; background: #16161c; color: #eee; }
+aside { width: 210px; padding: 12px; background: #1f1f28; overflow: auto; }
+aside button { width: 100%; margin-bottom: 6px; }
+ul { list-style: none; padding: 0; margin: 8px 0; }
+li { padding: 6px 8px; border-radius: 6px; cursor: pointer; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+li:hover { background: #2c2c38; } li.active { background: #5b3cc4; }
+main { flex: 1; padding: 14px; display: flex; flex-direction: column; gap: 8px; overflow: auto; }
+input, textarea, button { font-family: inherit; font-size: 14px; }
+#title, textarea { background: #0f0f14; color: #fff; border: 1px solid #333; border-radius: 6px; padding: 8px; }
+textarea { min-height: 220px; resize: vertical; font-size: 16px; line-height: 1.5; }
+button { background: #2c2c38; color: #fff; border: 0; border-radius: 6px; padding: 7px 10px; cursor: pointer; }
+button.primary { background: #7c4dff; }
+.row { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+label { display: flex; gap: 8px; align-items: center; }
+label input[type=range] { flex: 1; }
+.disabled { opacity: .5; }
+pre { direction: ltr; text-align: left; background: #0f0f14; padding: 8px; border-radius: 6px; }

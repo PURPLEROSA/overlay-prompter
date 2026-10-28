@@ -1,0 +1,60 @@
+<!doctype html>
+<html dir="rtl" lang="he">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'">
+<link rel="stylesheet" href="panel.css">
+<title>Overlay Prompter</title>
+</head>
+<body>
+<aside>
+  <h3>תסריטים · Scripts</h3>
+  <button id="new">+ חדש · New</button>
+  <button id="load">📂 טען ‎.txt/.md</button>
+  <ul id="list"></ul>
+</aside>
+<main>
+  <input id="title" placeholder="כותרת · Title">
+  <textarea id="editor" placeholder="הדביקו כאן את הטקסט · Paste your script here"></textarea>
+  <div class="row">
+    <button id="save" class="primary">💾 שמור והצג · Save &amp; show</button>
+    <button id="delete">🗑 מחק</button>
+  </div>
+
+  <div class="row controls">
+    <button data-cmd="restart">⏮</button>
+    <button data-cmd="jumpBack">⏪</button>
+    <button data-cmd="togglePlay" class="primary">⏯ נגן/עצור</button>
+    <button data-cmd="jumpForward">⏩</button>
+    <button data-cmd="toggleOverlay">👁 הסתר/הצג</button>
+    <button data-cmd="resetPosition">⌖ מיקום ברירת מחדל</button>
+  </div>
+
+  <label>מהירות · Speed <input type="range" id="speed" min="5" max="300"><output for="speed"></output></label>
+  <label>גודל גופן · Font <input type="range" id="fontSize" min="16" max="140"><output for="fontSize"></output></label>
+  <label>שקיפות רקע · Opacity <input type="range" id="opacity" min="0" max="1" step="0.05"><output for="opacity"></output></label>
+  <div class="row checks">
+    <label><input type="checkbox" id="rtl"> RTL עברית</label>
+    <label><input type="checkbox" id="mirror"> מראה · Mirror</label>
+    <label><input type="checkbox" id="highlightLine"> קו קריאה · Reading line</label>
+    <label><input type="checkbox" id="clickThrough"> לחיצה דרך החלון · Click-through</label>
+  </div>
+  <label class="disabled" title="Not implemented yet — see README roadmap">
+    <input type="checkbox" disabled> 🎙 מעקב קולי (בקרוב) · Voice-follow (coming soon, not implemented)
+  </label>
+
+  <details>
+    <summary>קיצורי מקלדת · Hotkeys (Ctrl = Cmd on Mac)</summary>
+    <pre>
+Ctrl+Shift+Space   נגן / עצור · play / pause
+Ctrl+Shift+↑ / ↓   מהירות + / − · speed
+Ctrl+Shift+← / →   אחורה / קדימה 3 שורות · jump back / forward
+Ctrl+Shift+R       להתחלה · restart
+Ctrl+Shift+H       הסתר / הצג · hide / show overlay
+Ctrl+Shift+L       לחיצה דרך החלון · click-through
+Ctrl+Shift+= / -   גופן + / − · font size</pre>
+  </details>
+</main>
+<script src="panel.js"></script>
+</body>
+</html>
