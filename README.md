@@ -94,3 +94,28 @@ Smooth time-based auto-scroll · speed +/- · play/pause · jump back/forward ·
 
 ### For AI assistants / contributors
 See [AGENTS.md](AGENTS.md) and [CONTRIBUTING.md](CONTRIBUTING.md). License: MIT.
+
+---
+
+## 📱 אפליקציית אנדרואיד — פרומפטר צף מעל כל אפליקציה / Android app
+
+תיקייה: `android/` (Kotlin, minSdk 26 / Android 8+, targetSdk 34).
+חלון פרומפטר שקוף-למחצה שמופיע **מעל כל אפליקציה** (טיקטוק, אינסטגרם, מצלמה…), עם גלילה אוטומטית, גרירה ושינוי גודל, עברית RTL בגופן Heebo.
+
+### התקנה (עברית)
+1. העבירי לטלפון את `overlay-prompter-debug.apk` (נבנה ל-`dist/`, לא נשמר ב-git; או בנייה: `cd android && ./gradlew assembleDebug`).
+2. פתחי את הקובץ ← אשרי **"התקנה ממקורות לא ידועים"** לאפליקציה שממנה פתחת (קבצים/כרום).
+3. פתחי "פרומפטר צף", הדביקי טקסט ולחצי **▶ הפעלה מעל אפליקציות**.
+4. בפעם הראשונה ייפתח מסך הסבר ← **"פתיחת הגדרות ההרשאה"** ← הפעילי "הצגה מעל אפליקציות אחרות".
+5. אשרי התראות (Android 13+) — בהתראה יש כפתורי השהיה/הסתרה/עצירה.
+6. פתחי טיקטוק או כל אפליקציה — הפרומפטר נשאר מעליה.
+
+כפתורי החלון: ✥ גרירה · ▶/⏸ · −/+ מהירות · A−/A+ גופן · ◐ שקיפות · ⇋ מראה · ▤ קו קריאה · 🔒 נעילה (לחיצות עוברות דרך החלון; בועה 🔓 לשחרור) · ▁ כיווץ לבועה · ✕ סגירה · ◢ שינוי גודל. הקשה על הטקסט = השהיה/המשך.
+
+### Install (English)
+Sideload the debug APK → allow "Install unknown apps" for your file manager/browser → open the app → Start → grant **Display over other apps** → allow notifications. Text can also be shared into the app from any app (Share → פרומפטר צף), pasted, or imported from a `.txt`.
+
+### Screen recording / screenshots — honest note
+The overlay window sets `FLAG_SECURE`, which asks Android to exclude it from screenshots and screen recordings. Many devices honor this for overlay windows, but **behavior varies by manufacturer and Android version** (some show a black area, some ignore it). Either way, **a TikTok/Instagram camera recording never includes the overlay** — the camera only captures the lens, not the screen.
+
+Not on Play Store; debug-signed build. iOS is not possible (iOS does not allow drawing over other apps).
